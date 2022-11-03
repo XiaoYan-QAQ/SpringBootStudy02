@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>花卉管理系统</title>
+    </head>
+    <body>
+        <table align="center" width="500" border="1" cellspacing="0" style="text-align: center">
+            <thead>
+                <tr>
+                    <th>花卉编号</th>
+                    <th>花卉名称</th>
+                    <th>别名</th>
+                    <th>科属</th>
+                    <th>价格（元/支）</th>
+                    <th>原产地</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="temp:${list}">
+                <td th:text="*{temp.id}"></td>
+                <td th:text="*{temp.name}"></td>
+                <td th:text="*{temp.anothername}"></td>
+                <td th:text="*{temp.property}"></td>
+                <td th:text="*{temp.price}"></td>
+                <td th:text="*{temp.production}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>俱乐部信息管理系统</title>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    </head>
+    <body>
+
+        <table align="center" width="600" border="1" cellspacing="0" style="text-align: center" id="data">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>家庭住址</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr v-for="temp in tempData">
+                <td>{{temp.MID}}</td>
+                <td>{{temp.MNAME}}</td>
+                <td>{{temp.MGENDER}}</td>
+                <td>{{temp.MAGE}}</td>
+                <td>{{temp.MADDRESS}}</td>
+                <td>{{temp.MEMAIL}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <script>
+            new Vue({
+                el: "#data",
+                data() {
+                    return {
+                        tempData: {}
+                    }
+                },
+                mounted() {
+                    that = this
+                    $.get("http://localhost:8080/membersinfo/query", data => {
+                        that.tempData = data
+                    }, "JSON")
+                }
+            })
+        </script>
+    </body>
+</html>

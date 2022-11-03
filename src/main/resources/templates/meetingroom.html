@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>会议室管理系统</title>
+    </head>
+    <body>
+        <table align="center" width="500" border="1" cellspacing="0" style="text-align: center">
+            <thead>
+                <tr>
+                    <th>预订编号</th>
+                    <th>会议室</th>
+                    <th>预定人</th>
+                    <th>日期</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr th:each="temp:${list}">
+                <td th:text="*{temp.id}"></td>
+                <td th:text="*{temp.advance_name}"></td>
+                <td th:text="*{temp.name}"></td>
+                <td th:text="*{temp.order}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    </head>
+    <body>
+        <div id="data">
+            <p style="text-align: center">
+                <input type="text" v-model="id">
+                <select v-model="risk">
+                    <option value="">全部</option>
+                    <option value="R1">R1</option>
+                    <option value="R2">R2</option>
+                    <option value="R3">R3</option>
+                </select>
+                <button @click="query()">
+                    查询
+                </button>
+            </p>
+            <table align="center" width="600" border="1" cellspacing="0" style="text-align: center">
+                <thead>
+                    <tr>
+                        <th>产品代码</th>
+                        <th>风险评级</th>
+                        <th>预期收益</th>
+                        <th>发售起始日</th>
+                        <th>发售截止日</th>
+                        <th>产品到期日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr v-for="temp in tempData">
+                    <td>{{temp.id}}</td>
+                    <td>{{temp.risk}}</td>
+                    <td>{{temp.income}}</td>
+                    <td>{{temp.saleStarting}}</td>
+                    <td>{{temp.saleEnd}}</td>
+                    <td>{{temp.end}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            new Vue({
+                el: "#data",
+                data() {
+                    return {
+                        tempData: {},
+                        id: "",
+                        risk: ""
+                    }
+                },
+                mounted() {
+                    this.query()
+                },
+                methods: {
+                    query() {
+                        alert(1)
+                        that = this
+                        $.get("http://localhost:8080/financing/query", {
+                            id: that.id,
+                            risk: that.risk
+                        }, data => {
+                            that.tempData = data
+                        }, "JSON")
+                    }
+                }
+            })
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+        <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+    </head>
+    <body>
+
+        <table align="center" width="600" border="1" cellspacing="0" style="text-align: center" id="data">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>图书名称</th>
+                    <th>作者</th>
+                    <th>购买时间</th>
+                    <th>图书分类</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr v-for="temp in tempData">
+                <td>{{temp.id}}</td>
+                <td>{{temp.name}}</td>
+                <td>{{temp.time}}</td>
+                <td>{{temp.type}}</td>
+                <td>{{temp.id}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <script>
+            new Vue({
+                el: "#data",
+                data() {
+                    return {
+                        tempData: {}
+                    }
+                },
+                mounted() {
+                    that = this
+                    $.get("http://localhost:8080/book/query", data => {
+                        that.tempData = data
+                    }, "JSON")
+                }
+            })
+        </script>
+
+    </body>
+</html>
